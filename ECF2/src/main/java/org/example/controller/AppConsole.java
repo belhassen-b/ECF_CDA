@@ -34,17 +34,16 @@ public class AppConsole {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("1. Gestion des membres");
-            System.out.println("2. Gestion des activités");
-            System.out.println("3. Gestion des coachs");
-            System.out.println("4. Gestion des salles");
+            System.out.println("1. Gestion des coachs");
+            System.out.println("2. Gestion des membres");
+            System.out.println("3. Gestion des activités");
             System.out.println("0. Quitter");
             choice = sc.nextInt();
             sc.nextLine();
             switch (choice) {
-                case 1 -> menuMember(sc);
-                case 2 -> menuActivity(sc);
-                case 3 -> menuCoach(sc);
+                case 1 -> menuCoach(sc);
+                case 2 -> menuMember(sc);
+                case 3 -> menuActivity(sc);
                 case 0 -> {
                     System.out.println("Au revoir !");
                     emf.close();
@@ -91,14 +90,6 @@ public class AppConsole {
             System.out.println("Le membre a bien été ajouté !");
         } else {
             System.out.println("Une erreur est survenue lors de l'ajout du membre !");
-        }
-        System.out.println("Voulez-vous ajouter une autre activité ? (y/n)");
-        String choice = sc.nextLine();
-        if (choice.equals("y")) {
-            createMember(sc);
-        } else {
-            System.out.println("Retour au menu principal");
-            main();
         }
     }
 
@@ -153,7 +144,6 @@ public class AppConsole {
             System.out.println("Id : " + member.getId() + " Nom : " + member.getLastName() + " Prénom : " + member.getFirstName() + " Activité : " + member.getActivities());
         }
     }
-
 
     // menu de gestion des coachs
     private static void menuCoach(Scanner sc) {

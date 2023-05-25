@@ -1,7 +1,7 @@
 package org.centresportif.services;
 
 import org.centresportif.entities.Coach;
-import org.centresportif.interfaces.Repository;
+import org.centresportif.entities.interfaces.Repository;
 
 import java.util.List;
 

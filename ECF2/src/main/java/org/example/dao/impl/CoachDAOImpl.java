@@ -58,11 +58,12 @@ public class CoachDAOImpl implements CoachDAO {
     @Override
     public boolean deleteCoachDAO(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        System.out.println("id = " + id);
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
             entityManager.createQuery("DELETE FROM Coach c WHERE c.id = :id")
-                    .setParameter("id", 1L)
+                    .setParameter("id", id)
                     .executeUpdate();
             transaction.commit();
             return true;
@@ -82,6 +83,7 @@ public class CoachDAOImpl implements CoachDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             Coach coach = entityManager.find(Coach.class, id);
+            entityManager.close();
             return coach;
         }
         catch (Exception e) {
@@ -98,9 +100,6 @@ public class CoachDAOImpl implements CoachDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             List<Coach> coaches = entityManager.createQuery("SELECT c FROM Coach c", Coach.class).getResultList();
-            for (Coach coach : coaches) {
-                System.out.println("Id Coach : " + coach.getId() + " Name Coach : " + coach.getFullName());
-            }
             entityManager.close();
             return coaches;
         }
@@ -113,22 +112,4 @@ public class CoachDAOImpl implements CoachDAO {
         }
     }
 
-    @Override
-    public boolean getCoachDAOByActivity() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try{
-            List<Coach> coaches = entityManager.createQuery("SELECT c FROM Coach c WHERE c.activity = :activity", Coach.class)
-                    .setParameter("activity", "sport")
-                    .getResultList();
-            for (Coach coach : coaches) {
-                System.out.println("Id Coach : " + coach.getId() + " Name Coach : " + coach.getFullName());
-            }
-            entityManager.close();
-            return true;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }

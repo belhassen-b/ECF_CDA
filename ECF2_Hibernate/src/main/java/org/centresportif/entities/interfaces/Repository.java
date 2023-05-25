@@ -1,4 +1,4 @@
-package org.centresportif.interfaces;
+package org.centresportif.entities.interfaces;
 
 import java.util.List;
 

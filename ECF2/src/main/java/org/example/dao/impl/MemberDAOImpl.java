@@ -97,7 +97,7 @@ public class MemberDAOImpl implements MemberDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            List<Member> members = entityManager.createQuery("from Member", Member.class).getResultList();
+            List<Member> members = entityManager.createQuery("SELECT m FROM Member m", Member.class).getResultList();
             entityManager.getTransaction().commit();
             return members;
         }

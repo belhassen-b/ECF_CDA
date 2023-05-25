@@ -15,7 +15,7 @@ public interface CoachDAO {
     Coach getCoachDAOById(Long id);
 
     List<Coach> getAllCoachesDAO();
-    boolean getCoachDAOByActivity();
+
 
 
 }

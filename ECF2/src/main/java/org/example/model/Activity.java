@@ -30,15 +30,15 @@ public class Activity {
     private String location;
 
 
-
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "coach_id")
     private Coach coach;
 
     @Enumerated(EnumType.STRING)
     private Category category;
 
 
-    @ManyToMany
+    @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "activity_member",
             joinColumns = @JoinColumn(name = "activity_id"),
             inverseJoinColumns = @JoinColumn(name = "member_id"))

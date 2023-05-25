@@ -2,7 +2,7 @@ package org.centresportif.services;
 
 import org.centresportif.entities.Activity;
 import org.centresportif.entities.Member;
-import org.centresportif.interfaces.Repository;
+import org.centresportif.entities.interfaces.Repository;
 
 import java.util.List;
 

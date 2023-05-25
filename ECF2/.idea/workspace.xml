@@ -5,29 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5ef61c1-9894-4158-a942-b24a9edb1797" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../ECF2_Hibernate/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centreSportif/interfaces/Repository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centreSportif/services/BaseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centreSportif/services/ProduitService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/resources/hibernate.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/AppConsole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/ActivityDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/CoachDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/MemberDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/impl/ActivityDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/impl/CoachDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/impl/MemberDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Activity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Coach.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Member.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/AppConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/AppConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/CoachDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/CoachDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/impl/CoachDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/impl/CoachDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/impl/MemberDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/impl/MemberDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Coach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Coach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ECF2_Hibernate/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ECF2_Hibernate/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/interfaces/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/entities/interfaces/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/services/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/services/ActivityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/services/CoachService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/services/CoachService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/services/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ECF2_Hibernate/src/main/java/org/centresportif/services/MemberService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,10 +33,17 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2QG2Dt8gsXTLoXvgUjAgLgzgH6C" />
   <component name="ProjectLevelVcsManager">
@@ -62,8 +58,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "hibernate",
-    "last_opened_file_path": "D:/MainTpRepo/10_JAVA/_TP/Tp-Vendredi-19-05-2023",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/ECF_CDA/ECF2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -109,6 +105,7 @@
       <updated>1684965487407</updated>
       <workItem from="1684965490550" duration="6000" />
       <workItem from="1684996964927" duration="13336000" />
+      <workItem from="1685025737782" duration="1949000" />
     </task>
     <servers />
   </component>

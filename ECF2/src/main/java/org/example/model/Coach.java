@@ -23,6 +23,9 @@ public class Coach {
     private String firstName;
 
 
+    @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Activity> activities = new ArrayList<>();
+
 
     public void setId(Long id) {
         this.id = id;
