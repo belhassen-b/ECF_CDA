@@ -13,7 +13,4 @@ public interface IUserService {
 
     User findById(Long id);
 
-    boolean isAdmin();
-
-    User findByUsername(String player1);
 }

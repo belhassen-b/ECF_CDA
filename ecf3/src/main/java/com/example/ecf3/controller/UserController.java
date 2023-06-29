@@ -16,11 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class UserController {
 
-    private IUserService userService;
-
-    public UserController(IUserService userService) {
-        this.userService = userService;
-    }
+    private final IUserService userService;
 
     @GetMapping("/profil/{id}")
     public String showUser(@PathVariable("id") Long id, Model model) {

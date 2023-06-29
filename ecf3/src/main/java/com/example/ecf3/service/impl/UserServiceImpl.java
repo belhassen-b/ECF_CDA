@@ -37,14 +37,4 @@ userRepository.save(user);
             return userRepository.findById(id).get();
     }
 
-    @Override
-    public boolean isAdmin() {
-        return false;
-    }
-
-    @Override
-    public User findByUsername(String player1) {
-        return userRepository.findByUsername(player1);
-    }
-
 }
