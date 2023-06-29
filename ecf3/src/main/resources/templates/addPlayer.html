@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <th:block th:insert="fragments/base.html :: head"></th:block>
+</head>
+<body>
+//form to add a player to a tournament
+
+<form class="container"  method="post">
+
+  <div  class="form-group">
+    <label for="player">Joueur</label>
+    <select name="player"  id="player"  class="form-control">
+      <option th:each="player : ${players}" th:value="${player.id}" th:text="${player.name}"></option>
+    </select>
+    </div>
+  <div  class="form-group">
+    <label for="tournament">Tournoi</label>
+    <select name="tournament"  id="tournament"  class="form-control">
+      <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
+    </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary m-2">Ajouter</button>
+    <a th:href="@{/tournament/management}" class="btn btn-danger my-3">Retour</a>
+
+</form>
+
+</body>
+</html>

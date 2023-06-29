@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <th:block th:insert="fragments/base.html :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <h3 class="text-center">Votre profil</h3>
+
+    <div class="row">
+        <div class="col-6">
+            <h4 class="text-center">Informations personnelles</h4>
+            <table class="table table-bordered table-striped table-dark text-center">
+                <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Pseudo</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <h4 class="text-center">Informations de connexion</h4>
+            <table class="table table-bordered table-striped table-dark text-center">
+                <thead>
+                <tr>
+                    <th scope="col">Rôle</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Date de modification</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${user.role}"></td>
+                    <td th:text="${user.creationDate}"></td>
+                    <td th:text="${user.modificationDate}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h3 class="text-center">Gestion des tournois</h3>
+  <table class="table table-bordered table-striped table-dark text-center">
+    <thead>
+    <tr>
+      <th scope="col">Nom du tournoi</th>
+      <th scope="col">Date de début</th>
+      <th scope="col">Date de fin</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tournament : ${tournaments}">
+        <td th:text="${tournament.name}"></td>
+        <td th:text="${tournament.startDate}"></td>
+        <td th:text="${tournament.endDate}"></td>
+      <td>
+        <a th:href="@{/tournament/editTournament/{id}(id=${tournament.id})}" class="btn btn-primary">Modifier</a>
+        <a th:href="@{/tournament/deleteTournament/{id}(id=${tournament.id})}" class="btn btn-danger">Supprimer</a>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil</title>
+  <th:block th:insert="fragments/base.html :: head"></th:block>
+</head>
+<body>
+<div class="container">
+  <h3 class="text-center">Votre profil</h3>
+
+  <div class="row">
+    <div class="col-6">
+      <h4 class="text-center">Informations personnelles</h4>
+      <table class="table table-bordered table-striped table-dark text-center">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Pseudo</th>
+          <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+      </table>
+    </div>
+  </div>
+</div>
+<div >// Todo classement </div>
+<div >// Todo historique </div>
+
+</body>
+</html>

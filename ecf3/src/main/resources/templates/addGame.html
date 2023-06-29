@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Match</title>
+    <th:block th:insert="fragments/base.html :: head"></th:block>
+<body>
+<div class="container">
+    <h3 class="text-center">Créer un match</h3>
+    <form method="post" th:action="@{/games/create}" class="m-2" th:object="${game}">
+        <div class="form-group">
+            <label for="player1">Joueur 1</label>
+            <select name="player1" id="player1" class="form-control">
+                <option th:each="player : ${players}" th:value="${player.id}" th:text="${player.username}"></option>
+            </select>
+        </div>
+    <div  class="form-group">
+        <label for="player2">Joueur 2</label>
+        <select name="player2"  id="player2"  class="form-control">
+            <option th:name="player2" th:each="player : ${players}" th:value="${player.id}" th:text="${player.username}"></option>
+        </select>
+    </div>
+        <div class="form-group">
+            <label for="dateTime">Date et heure du match </label>
+            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" placeholder="Date et heure du match">
+        </div>
+        <div class="form-group">
+            <label for="tournament">Tournoi</label>
+            <select name="tournament" id="tournament" class="form-control">
+                <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary m-2">Ajouter</button>
+
+    </form>
+</div>
+</body>
+</html>
