@@ -2,9 +2,11 @@ package com.example.ecf3.controller;
 
 
 import com.example.ecf3.entity.Game;
+import com.example.ecf3.entity.Result;
 import com.example.ecf3.entity.Tournament;
 import com.example.ecf3.entity.User;
 import com.example.ecf3.repository.IGameRepository;
+import com.example.ecf3.repository.IResultRepository;
 import com.example.ecf3.service.IGameService;
 import com.example.ecf3.service.ITournamentService;
 import com.example.ecf3.service.IUserService;
@@ -29,7 +31,10 @@ public class GameController {
     private final ITournamentService tournamentService;
 
 
-    @GetMapping("/gameList")
+    private final IResultRepository resultRepository;
+
+
+    @GetMapping("/gameAdd")
     public String showGames(Model model) {
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("users", userService.findAll());
@@ -37,8 +42,16 @@ public class GameController {
         return "addGame";
     }
 
+    @GetMapping("/gameList")
+    public String showGamesList(Model model) {
+        model.addAttribute("games", gameRepository.findAll());
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("tournaments", tournamentService.findAll());
+        return "adminGame";
+    }
+
     @PostMapping("/create")
-    public String add( @RequestParam Long whitePlayer, @RequestParam Long blackPlayer,@RequestParam String dateTime, @RequestParam Long tournament) {
+    public String add(@RequestParam Long whitePlayer, @RequestParam Long blackPlayer, @RequestParam String dateTime, @RequestParam Long tournament) {
         User whitePlayer1 = userService.findById(whitePlayer);
         User blackPlayer1 = userService.findById(blackPlayer);
         Tournament tournament1 = tournamentService.findById(tournament);
@@ -50,9 +63,34 @@ public class GameController {
                 .build();
 
         gameService.save(game);
-        return "redirect:/games/gameList";
+        return "redirect:/games/gameAdd";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editGame(@PathVariable("id") Long id, Model model) {
+        Game g = gameService.findById(id);
+        model.addAttribute("game", g);
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("tournaments", tournamentService.findAll());
+        return "updateGame";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateGame(@RequestParam Long id, @RequestParam Long whitePlayer, @RequestParam Long blackPlayer, @RequestParam String dateTime, @RequestParam Long tournament, @RequestParam Result result) {
+        User whitePlayer1 = userService.findById(whitePlayer);
+        User blackPlayer1 = userService.findById(blackPlayer);
+        Tournament tournament1 = tournamentService.findById(tournament);
+        Game game = Game.builder()
+                .id(id)
+                .whitePlayer(whitePlayer1)
+                .blackPlayer(blackPlayer1)
+                .dateTime(dateTime)
+                .tournament(tournament1)
+                .result(result)
+                .build();
+        gameService.save(game);
+        return "redirect:/games/gameList";
+    }
 
 }
 

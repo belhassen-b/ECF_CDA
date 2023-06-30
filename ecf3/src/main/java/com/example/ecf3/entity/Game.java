@@ -23,11 +23,6 @@ public class Game {
     @ManyToOne
     private User blackPlayer;
 
-//    @Temporal(TemporalType.DATE)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @Column(name="date_time")
-//    private Date dateTime;
-
     private String dateTime;
 
 
@@ -36,5 +31,6 @@ public class Game {
 
     @ManyToOne
     private Tournament tournament;
+
 
 }

@@ -2,6 +2,7 @@ package com.example.ecf3.service.impl;
 
 import com.example.ecf3.entity.Game;
 import com.example.ecf3.entity.Tournament;
+import com.example.ecf3.entity.User;
 import com.example.ecf3.repository.ITournamentRepository;
 import com.example.ecf3.service.ITournamentService;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +21,7 @@ public class TournamentServiceImpl implements ITournamentService {
 
     @Override
     public boolean save(String name, Date date) {
-        Tournament tournament = new Tournament();
-        tournament.setName(name);
-        tournament.setDate(date);
-        tournamentRepository.save(tournament);
-        return tournament.getId()>0;
+        return false;
     }
 
     public List<Tournament> findAll() {
@@ -57,6 +54,11 @@ public class TournamentServiceImpl implements ITournamentService {
     public boolean update(Tournament t) {
         tournamentRepository.save(t);
         return true;
+    }
+
+    @Override
+    public Tournament findAllByUser(User user) {
+        return null;
     }
 
 

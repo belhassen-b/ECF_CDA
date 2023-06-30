@@ -36,7 +36,7 @@ public class TournamentController {
 
     @PostMapping("/create")
     public String creatTournament(@RequestParam("name") String name,
-                                  @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+                                  @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
         Tournament tournament = Tournament.builder()
                 .name(name)
                 .date(date)
@@ -46,9 +46,9 @@ public class TournamentController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteTournament(@PathVariable("id") Long id){
-       Tournament t =  tournamentService.findById(id);
-        if( t != null && tournamentService.deleteById(id)){
+    public String deleteTournament(@PathVariable("id") Long id) {
+        Tournament t = tournamentService.findById(id);
+        if (t != null && tournamentService.deleteById(id)) {
             log.info("Tournament deleted: " + t.getName());
             return "redirect:/tournaments/admin";
         }
@@ -56,29 +56,27 @@ public class TournamentController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editTournament(@PathVariable("id") Long id, Model model){
+    public String editTournament(@PathVariable("id") Long id, Model model) {
         Tournament t = tournamentService.findById(id);
-        if(t != null){
+        if (t != null) {
             model.addAttribute("tournament", t);
-            return "addTournament";
+            return "updateTournament";
         }
         return "Aucun tournoi avec cet id";
     }
 
     @PostMapping("/update/{id}")
-    public Tournament updateTournament(@PathVariable("id") Long id,
-                                      @ModelAttribute Tournament tournament){
+    public String updateTournament(@PathVariable("id") Long id,
+                                       @ModelAttribute Tournament tournament) {
         Tournament t = tournamentService.findById(id);
-        if(t != null){
+        if (t != null) {
             t.setName(tournament.getName());
             t.setDate(tournament.getDate());
-            tournamentService.update(t);
-            return t;
+            if (tournamentService.save(t) ) {
+        return "redirect:/tournaments/admin";
+            }
         }
-        return t;
+        return "Aucun tournoi avec cet id";
     }
-
-
-
 }
 

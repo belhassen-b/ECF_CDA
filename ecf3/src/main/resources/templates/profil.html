@@ -8,9 +8,6 @@
 <body>
 <div class="container">
   <h3 class="text-center">Votre profil</h3>
-
-  <div class="row">
-    <div class="col-6">
       <h4 class="text-center">Informations personnelles</h4>
       <table class="table table-bordered table-striped table-dark text-center">
         <thead>
@@ -29,15 +26,39 @@
             <td th:text="${user.email}"></td>
       </table>
     </div>
-  </div>
-</div>
+// show game for user passed in parameter
+<table class="table table-bordered table-striped table-dark text-center">
+    <thead>
+    <tr>
+        <th scope="col">Partie id :</th>
+        <th scope="col">Date et heure :</th>
+        <th scope="col">Tournoi :</th>
+        <th scope="col">Joueur 1 :</th>
+        <th scope="col">Joueur 2 :</th>
+        <th scope="col">Résultat :</th>
 
-
-
-
-
-  // Todo classement </div>
-<div >// Todo historique </div>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="game : ${games}" th:if="${user.id} == ${game.whitePlayer.id}" th:else="${user.id} == ${game.blackPlayer.id}">
+        <input type="hidden" th:field="*{user.id}" />
+        <td th:text="${game.id}"></td>
+        <td th:text="${game.dateTime}"></td>
+        <td th:text="${game.tournament.name}"></td>
+        <td th:text="${game.whitePlayer.username}"></td>
+        <td th:text="${game.blackPlayer.username}"></td>
+        <td th:text="${game.result} ? 'Blanc' : 'Noir'"></td>
+        <td>
+            <a th:href="@{/games/setWinner/{id}(id=${game.id})}" class="btn btn-success">Blanc</a>
+            <a th:href="@{/games/setWinner/{id}(id=${game.id})}" class="btn btn-success">Noir</a>
+            <a th:href="@{/games/edit/{id}(id=${game.id})}" class="btn btn-warning">Modifier</a>
+            <a th:href="@{/games/delete/{id}(id=${game.id})}" class="btn btn-danger">Supprimer</a>
+        </td>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

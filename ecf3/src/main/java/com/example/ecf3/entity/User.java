@@ -29,6 +29,8 @@ public class User {
 
     private boolean admin;
 
+    private boolean  isWinner;
+
 
     @OneToMany(mappedBy = "whitePlayer")
     private List<Game> whitePlayer;
