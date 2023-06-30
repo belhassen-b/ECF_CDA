@@ -3,8 +3,8 @@ package com.example.ecf3.controller;
 import com.example.ecf3.entity.Game;
 import com.example.ecf3.entity.User;
 import com.example.ecf3.service.IGameService;
-import com.example.ecf3.service.ITournamentService;
 import com.example.ecf3.service.IUserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,14 +23,14 @@ public class UserController {
 
     private final IUserService userService;
     private final IGameService gameService;
-    private final ITournamentService tournamentService;
+    private final HttpSession httpSession;
 
 
     @GetMapping("/profil/{id}")
     public String showUser(@PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
         List<Game> allGames = gameService.AllGame(user).stream().toList();
-        if(user.isAdmin()){
+        if (user.isAdmin()) {
             return "redirect:/tournaments/admin";
         }
         model.addAttribute("user", user);
@@ -38,6 +38,15 @@ public class UserController {
         return "profil";
     }
 
-    //show get user session
-
+    @GetMapping("/addPlayer")
+    public String addPlayer(Model model) {
+        if (httpSession.getAttribute("user") == null) {
+            return "redirect:/error";
+        }
+        if (!((User) httpSession.getAttribute("user")).isAdmin()) {
+            return "redirect:/error";
+        }
+        model.addAttribute("user", new User());
+        return "addPlayer";
+    }
 }

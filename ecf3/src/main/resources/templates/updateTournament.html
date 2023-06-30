@@ -6,6 +6,8 @@
   <th:block th:insert="fragments/base.html :: head"></th:block>
 </head>
 <body>
+<th:blockquote th:insert="fragments/header.html :: nav"></th:blockquote>
+
 <div class="container">
   <form method="post" th:action="@{/tournaments/update/{id}(id=${tournament.id})}"  class="m-2" th:object="${tournament}">
     <div class="form-group">

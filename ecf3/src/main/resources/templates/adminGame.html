@@ -6,18 +6,19 @@
     <th:block th:insert="fragments/base.html :: head"></th:block>
 </head>
 <body>
+<th:blockquote th:insert="fragments/header.html :: nav"></th:blockquote>
 <div class="container">
     <h4 class="text-center">Gestion des parties</h4>
     <table class="table table-bordered table-striped table-dark text-center">
-        <thead>
-        <tr>
+        <thead class="thead-dark">
+        <tr class="text-center">
             <th scope="col">Partie id :</th>
             <th scope="col">Date et heure :</th>
             <th scope="col">Tournoi :</th>
             <th scope="col">Joueur Blanc :</th>
             <th scope="col">Joueur Noir :</th>
             <th scope="col">Nom du gagnant :</th>
-            <th scope="col">Définir le gagant </th>
+            <th scope="col">Définir le gagant</th>
         </tr>
         </thead>
         <tbody>
@@ -29,14 +30,15 @@
             <td th:text="${game.blackPlayer.username}"></td>
             <td th:text="${game.result.winner.username}"></td>
             <td>
-                <a th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.whitePlayer.id}}" class="btn btn-success">Blanc</a>
-                <a th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.blackPlayer.id}}" class="btn btn-success">Noir</a>
-            </td>
+                <a th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.whitePlayer.id}}"
+                   class="btn btn-success m-2">Blanc</a>
+                <a th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.blackPlayer.id}}"
+                   class="btn btn-success m-2">Noir</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/tournaments/admin}" class="btn btn-primary">Retour</a>
+    <a th:href="@{/tournaments/admin}" class="btn btn-primary my-3">Retour</a>
 </div>
 </body>
 </html>

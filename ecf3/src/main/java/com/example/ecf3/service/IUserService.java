@@ -13,4 +13,6 @@ public interface IUserService {
 
     User findById(Long id);
 
+    boolean findIfUserExists(String username, String email);
+
 }

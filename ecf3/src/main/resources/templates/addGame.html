@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <title>Match</title>
     <th:block th:insert="fragments/base.html :: head"></th:block>
 <body>
-<div class="container">
-    <h3 class="text-center">Créer un match</h3>
-    <form method="post" th:action="@{/games/create}" class="m-2" th:object="${game}">
-        <div class="form-group">
+<th:blockquote th:insert="fragments/header.html :: nav"></th:blockquote>
+
+<div class="container border border-dark rounded my-3">
+    <h3 class="text-center my-3 ">Créer un match</h3>
+    <form method="post" th:action="@{/games/create}" class="m-2 p-2">
+        <div class="form-group ">
             <label for="whitePlayer">Joueur 1</label>
-            <select name="whitePlayer" id="whitePlayer" class="form-control">
-                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+            <select name="whitePlayer" id="whitePlayer" class="form-control ">
+                <option class="form-control" th:each="user : ${users}" th:value="${user.id}"
+                        th:text="${user.username}"></option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="blackPlayer">Joueur 2</label>
+        <div class="form-group ">
+            <label  for="blackPlayer">Joueur 2</label>
             <select name="blackPlayer" id="blackPlayer" class="form-control">
-                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+                <option class="form-control" th:each="user : ${users}" th:value="${user.id}"
+                        th:text="${user.username}"></option>
             </select>
         </div>
         <div class="form-group">
             <label for="tournament">Tournoi</label>
             <select name="tournament" id="tournament" class="form-control">
-                <option th:each="tournament : ${tournaments}" th:value="${tournament.id}"
+                <option class="form-control" th:each="tournament : ${tournaments}" th:value="${tournament.id}"
                         th:text="${tournament.name}"></option>
             </select>
         </div>
         <div class="form-group">
-            <label for="dateTime">Date et heure du match </label>
-            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime"  placeholder="Date et heure du match">
+            <label  for="dateTime">Date et heure du match</label>
+            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime"
+                   placeholder="Date et heure du match">
         </div>
-        <button type="submit" class="btn btn-primary">Valider</button>
+        <button type="submit" class="btn btn-primary my-3">Créer le match</button>
         <a th:href="@{/tournaments/admin}" class="btn btn-danger my-3">Retour</a>
     </form>
 </div>

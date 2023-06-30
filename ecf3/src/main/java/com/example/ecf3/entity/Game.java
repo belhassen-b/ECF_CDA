@@ -2,9 +2,6 @@ package com.example.ecf3.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 @Entity
 @AllArgsConstructor

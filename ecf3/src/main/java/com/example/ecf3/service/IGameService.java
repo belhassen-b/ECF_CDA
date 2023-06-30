@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface IGameService {
 
-    boolean save(Game game);
+    void save(Game game);
 
     Game findById(Long id);
 

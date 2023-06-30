@@ -2,12 +2,9 @@ package com.example.ecf3.service;
 
 import com.example.ecf3.entity.Tournament;
 import com.example.ecf3.entity.User;
-
-import java.util.Date;
 import java.util.List;
 
 public interface ITournamentService {
-    boolean save(String name, Date date);
 
     List<Tournament> findAll();
 

@@ -7,9 +7,6 @@ import com.example.ecf3.repository.ITournamentRepository;
 import com.example.ecf3.service.ITournamentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,18 +17,13 @@ public class TournamentServiceImpl implements ITournamentService {
 
 
     @Override
-    public boolean save(String name, Date date) {
-        return false;
+    public boolean save( Tournament tournament) {
+        tournamentRepository.save(tournament);
+        return true;
     }
 
     public List<Tournament> findAll() {
         return tournamentRepository.findAll();
-    }
-
-    @Override
-    public boolean save(Tournament tournament) {
-        tournamentRepository.save(tournament);
-        return true;
     }
 
     @Override

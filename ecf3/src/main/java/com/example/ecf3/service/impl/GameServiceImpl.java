@@ -2,7 +2,6 @@ package com.example.ecf3.service.impl;
 
 
 import com.example.ecf3.entity.Game;
-import com.example.ecf3.entity.Result;
 import com.example.ecf3.entity.User;
 import com.example.ecf3.repository.IGameRepository;
 import com.example.ecf3.repository.IResultRepository;
@@ -10,7 +9,6 @@ import com.example.ecf3.service.IGameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,9 +24,8 @@ public class GameServiceImpl  implements IGameService {
 
 
     @Override
-    public boolean save(Game game) {
+    public void save(Game game) {
         gameRepository.save(game);
-        return game.getId() > 0;
     }
 
     @Override

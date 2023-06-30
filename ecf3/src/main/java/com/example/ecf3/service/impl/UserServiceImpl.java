@@ -37,4 +37,8 @@ userRepository.save(user);
             return userRepository.findById(id).get();
     }
 
+    @Override
+    public boolean findIfUserExists(String username, String email) {
+        return userRepository.existsByUsernameOrEmail(username, email);
+    }
 }

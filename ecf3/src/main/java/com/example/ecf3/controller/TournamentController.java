@@ -3,15 +3,15 @@ package com.example.ecf3.controller;
 
 import com.example.ecf3.entity.Game;
 import com.example.ecf3.entity.Tournament;
+import com.example.ecf3.entity.User;
 import com.example.ecf3.service.ITournamentService;
 import com.example.ecf3.util.Utils;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.Date;
 
 
 @Controller
@@ -21,9 +21,16 @@ import java.util.Date;
 public class TournamentController {
 
     private final ITournamentService tournamentService;
+    private final HttpSession httpSession;
 
     @GetMapping("/addTournament")
     public String addTournament(Model model) {
+        if (httpSession.getAttribute("user") == null) {
+            return "redirect:/error";
+        }
+        if (!((User) httpSession.getAttribute("user")).isAdmin()) {
+            return "redirect:/error";
+        }
         model.addAttribute("tournament", new Game());
         return "addTournament";
     }
@@ -37,10 +44,10 @@ public class TournamentController {
 
     @PostMapping("/create")
     public String creatTournament(@RequestParam("name") String name,
-                                  @RequestParam("date")String date) {
-        Tournament tournament = Tournament.builder()
+                                  @RequestParam String dateTime) {
+          Tournament tournament = Tournament.builder()
                 .name(name)
-                .date(Utils.parseDateString(date))
+                .dateTime(String.valueOf(Utils.parseDateString(dateTime)))
                 .build();
         tournamentService.save(tournament);
         return "redirect:/tournaments/admin";
@@ -49,35 +56,53 @@ public class TournamentController {
     @GetMapping("/delete/{id}")
     public String deleteTournament(@PathVariable("id") Long id) {
         Tournament t = tournamentService.findById(id);
+        if (httpSession.getAttribute("user") == null) {
+            return "redirect:/error";
+        }
+        if (!((User) httpSession.getAttribute("user")).isAdmin()) {
+            return "redirect:/error";
+        }
         if (t != null && tournamentService.deleteById(id)) {
             log.info("Tournament deleted: " + t.getName());
             return "redirect:/tournaments/admin";
         }
-        return "Aucun tournoi avec cet id";
+        return "error";
     }
 
     @GetMapping("/edit/{id}")
     public String editTournament(@PathVariable("id") Long id, Model model) {
         Tournament t = tournamentService.findById(id);
+        if (httpSession.getAttribute("user") == null) {
+            return "redirect:/error";
+        }
+        if (!((User) httpSession.getAttribute("user")).isAdmin()) {
+            return "redirect:/error";
+        }
         if (t != null) {
             model.addAttribute("tournament", t);
             return "updateTournament";
         }
-        return "Aucun tournoi avec cet id";
+        return "error";
     }
 
     @PostMapping("/update/{id}")
     public String updateTournament(@PathVariable("id") Long id,
                                        @ModelAttribute Tournament tournament) {
         Tournament t = tournamentService.findById(id);
+        if (httpSession.getAttribute("user") == null) {
+            return "redirect:/error";
+        }
+        if (!((User) httpSession.getAttribute("user")).isAdmin()) {
+            return "redirect:/error";
+        }
         if (t != null) {
             t.setName(tournament.getName());
-            t.setDate(tournament.getDate());
+            t.setDateTime(tournament.getDateTime());
             if (tournamentService.save(t) ) {
         return "redirect:/tournaments/admin";
             }
         }
-        return "Aucun tournoi avec cet id";
+        return "error";
     }
 }
 
