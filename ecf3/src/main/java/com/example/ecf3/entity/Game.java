@@ -25,6 +25,9 @@ public class Game {
 
     private String dateTime;
 
+    @ManyToOne
+    private User winner;
+
 
     @OneToOne
     private Result result;

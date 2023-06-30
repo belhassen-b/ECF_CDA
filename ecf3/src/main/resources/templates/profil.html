@@ -41,7 +41,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="game : ${games}" th:if="${user.id} == ${game.whitePlayer.id}" th:else="${user.id} == ${game.blackPlayer.id}">
+    <tr th:each="game : ${games}" th:if="${user.id} == ${game.whitePlayer.id}"
+        th:else="${user.id} == ${game.blackPlayer.id}">
         <input type="hidden" th:field="*{user.id}" />
         <td th:text="${game.id}"></td>
         <td th:text="${game.dateTime}"></td>

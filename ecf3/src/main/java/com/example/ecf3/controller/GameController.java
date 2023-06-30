@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -44,6 +46,9 @@ public class GameController {
 
     @GetMapping("/gameList")
     public String showGamesList(Model model) {
+        List<Game> games = gameRepository.findAll();
+games.stream().map(Game::getResult).forEach(System.out::println);
+
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("users", userService.findAll());
         model.addAttribute("tournaments", tournamentService.findAll());
@@ -54,11 +59,15 @@ public class GameController {
     public String add(@RequestParam Long whitePlayer, @RequestParam Long blackPlayer, @RequestParam String dateTime, @RequestParam Long tournament) {
         User whitePlayer1 = userService.findById(whitePlayer);
         User blackPlayer1 = userService.findById(blackPlayer);
+        Result result = new Result();
+        result.setWinner(whitePlayer1);
+        resultRepository.save(result);
         Tournament tournament1 = tournamentService.findById(tournament);
         Game game = Game.builder()
                 .whitePlayer(whitePlayer1)
                 .blackPlayer(blackPlayer1)
                 .dateTime(dateTime)
+                .result(result)
                 .tournament(tournament1)
                 .build();
 
@@ -88,6 +97,16 @@ public class GameController {
                 .tournament(tournament1)
                 .result(result)
                 .build();
+        gameService.save(game);
+        return "redirect:/games/gameList";
+    }
+
+    @GetMapping("/setWinner/{gameId}/{playerId}")
+    public String setWinner(@PathVariable("gameId") Long id, @PathVariable("playerId") Long playerId) {
+        System.out.println("gameId: " + id + " playerId: " + playerId);
+        Game game = gameService.findById(id);
+        User player = userService.findById(playerId);
+    game.getResult().setWinner(player);
         gameService.save(game);
         return "redirect:/games/gameList";
     }

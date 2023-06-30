@@ -20,10 +20,4 @@ public class Result {
     @ManyToOne
     private User winner;
 
-    @ManyToOne
-    private User loser;
-
-    private String result;
-
-
 }

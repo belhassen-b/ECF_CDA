@@ -4,6 +4,7 @@ package com.example.ecf3.controller;
 import com.example.ecf3.entity.Game;
 import com.example.ecf3.entity.Tournament;
 import com.example.ecf3.service.ITournamentService;
+import com.example.ecf3.util.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,10 +37,10 @@ public class TournamentController {
 
     @PostMapping("/create")
     public String creatTournament(@RequestParam("name") String name,
-                                  @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+                                  @RequestParam("date")String date) {
         Tournament tournament = Tournament.builder()
                 .name(name)
-                .date(date)
+                .date(Utils.parseDateString(date))
                 .build();
         tournamentService.save(tournament);
         return "redirect:/tournaments/admin";
