@@ -10,7 +10,10 @@ import com.example.ecf3.service.IGameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -36,5 +39,13 @@ public class GameServiceImpl  implements IGameService {
     @Override
     public List<Game> findAllByWhitePlayerOrBlackPlayer(User user, User user1) {
         return gameRepository.findAllByWhitePlayerOrBlackPlayer(user, user1);
+    }
+
+    @Override
+    public Set<Game> AllGame(User user) {
+        Set<Game> allGames = new HashSet<>();
+        allGames.addAll(user.getBlackPlayer());
+        allGames.addAll(user.getWhitePlayer());
+        return allGames;
     }
 }

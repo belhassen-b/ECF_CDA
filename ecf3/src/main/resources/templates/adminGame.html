@@ -3,47 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <th:block th:insert="fragments/base.html :: head"></th:block>
+    <th:block th:insert="fragments/base.html :: head"></th:block>
 </head>
 <body>
 <div class="container">
-  <h4 class="text-center">Gestion des parties</h4>
-
-  <table class="table table-bordered table-striped table-dark text-center">
-    <thead>
-    <tr>
-      <th scope="col">Partie id :</th>
-        <th scope="col">Date et heure :</th>
-        <th scope="col">Tournoi :</th>
-        <th scope="col">Joueur 1 :</th>
-        <th scope="col">Joueur 2 :</th>
-        <th scope="col">Résultat :</th>
-
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="game : ${games}">
-        <td th:text="${game.id}"></td>
-        <td th:text="${game.dateTime}"></td>
-        <td th:text="${game.tournament.name}"></td>
-        <td th:text="${game.whitePlayer.username}"></td>
-        <td th:text="${game.blackPlayer.username}"></td>
-      <td th:text="${game.result.winner.username}"></td>
-        <td>
-            <a  th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.whitePlayer.id}}" class="btn btn-success">Blanc</a>
-            <a  th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.blackPlayer.id}}" class="btn btn-success">Noir</a>
-        </td>
-
-      </td>
-
-    </tr>
-    </tbody>
-  </table>
-
-
-
+    <h4 class="text-center">Gestion des parties</h4>
+    <table class="table table-bordered table-striped table-dark text-center">
+        <thead>
+        <tr>
+            <th scope="col">Partie id :</th>
+            <th scope="col">Date et heure :</th>
+            <th scope="col">Tournoi :</th>
+            <th scope="col">Joueur Blanc :</th>
+            <th scope="col">Joueur Noir :</th>
+            <th scope="col">Nom du gagnant :</th>
+            <th scope="col">Définir le gagant </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="game : ${games}">
+            <td th:text="${game.id}"></td>
+            <td th:text="${game.dateTime}"></td>
+            <td th:text="${game.tournament.name}"></td>
+            <td th:text="${game.whitePlayer.username}"></td>
+            <td th:text="${game.blackPlayer.username}"></td>
+            <td th:text="${game.result.winner.username}"></td>
+            <td>
+                <a th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.whitePlayer.id}}" class="btn btn-success">Blanc</a>
+                <a th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.blackPlayer.id}}" class="btn btn-success">Noir</a>
+            </td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/tournaments/admin}" class="btn btn-primary">Retour</a>
 </div>
-
 </body>
 </html>

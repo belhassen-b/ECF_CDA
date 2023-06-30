@@ -26,7 +26,6 @@
             <td th:text="${user.email}"></td>
       </table>
     </div>
-// show game for user passed in parameter
 <table class="table table-bordered table-striped table-dark text-center">
     <thead>
     <tr>
@@ -41,8 +40,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="game : ${games}" th:if="${user.id} == ${game.whitePlayer.id}"
-        th:else="${user.id} == ${game.blackPlayer.id}">
+    <tr th:each="game : ${games}">
         <input type="hidden" th:field="*{user.id}" />
         <td th:text="${game.id}"></td>
         <td th:text="${game.dateTime}"></td>

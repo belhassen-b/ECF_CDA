@@ -11,7 +11,7 @@
             <label for="whitePlayer">Joueur 1</label>
             <select name="whitePlayer" id="whitePlayer" class="form-control">
                 <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
-                            </select>
+            </select>
         </div>
         <div class="form-group">
             <label for="blackPlayer">Joueur 2</label>
@@ -22,19 +22,17 @@
         <div class="form-group">
             <label for="tournament">Tournoi</label>
             <select name="tournament" id="tournament" class="form-control">
-                <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
+                <option th:each="tournament : ${tournaments}" th:value="${tournament.id}"
+                        th:text="${tournament.name}"></option>
             </select>
         </div>
-
         <div class="form-group">
             <label for="dateTime">Date et heure du match </label>
-            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" placeholder="Date et heure du match">
+            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime"  placeholder="Date et heure du match">
         </div>
-
-
         <button type="submit" class="btn btn-primary">Valider</button>
+        <a th:href="@{/tournaments/admin}" class="btn btn-danger my-3">Retour</a>
     </form>
-    <a th:href="@{/tournaments/admin}" class="btn btn-danger my-3">Retour</a>
 </div>
 </body>
 </html>
