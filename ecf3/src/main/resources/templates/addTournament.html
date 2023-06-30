@@ -10,26 +10,13 @@
   <form method="post" th:action="@{/tournaments/create}"  class="m-2" th:object="${tournament}">
     <div class="form-group">
       <label for="name">Nom du tournoi</label>
-      <input type="text" class="form-control" id="name" name="name" placeholder="Nom du tournoi">
+      <input type="text" class="form-control" th:field="*{name}" id="name" name="name" placeholder="Nom du tournoi">
     </div>
       <div class="form-group">
       <label for="date">Date début du tournoi</label>
-        <input type="date" class="form-control" id="date" name="date" placeholder="Date début du tournoi">
+        <input type="date" class="form-control" id="date" th:field="*{date}" name="date" placeholder="Date début du tournoi">
     </div>
-<!--    <div class="form-group">-->
-<!--        <label for="startDate">Date début du tournoi</label>-->
-<!--        <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Date début du tournoi" th:text="${#dates.format(tournament.se, 'dd-MM-yyyy HH:mm')} ">-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="endDate">Date fin du tournoi</label>-->
-<!--        <input type="date" class="form-control" id="endDate" name="endDate" placeholder="Date fin du tournoi" th:text="${#dates.format(standardDate, 'dd-MM-yyyy HH:mm')} ">-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="game">Jeu</label>-->
-<!--        <select name="game"  id="game"  class="form-control">-->
-<!--          <option th:each="game : ${games}" th:value="${game.id}" th:text="${game.label}"></option>-->
-<!--        </select>-->
-<!--    </div>-->
+
       <button type="submit" class="btn btn-primary m-2">Ajouter</button>
   </form>
     </div>

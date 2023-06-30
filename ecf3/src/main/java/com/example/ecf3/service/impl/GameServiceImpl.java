@@ -18,6 +18,7 @@ public class GameServiceImpl  implements IGameService {
 
     @Override
     public boolean save(Game game) {
-        return false;
+        gameRepository.save(game);
+        return game.getId() > 0;
     }
 }

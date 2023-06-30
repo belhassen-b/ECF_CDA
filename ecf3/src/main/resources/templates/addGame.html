@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Match</title>
     <th:block th:insert="fragments/base.html :: head"></th:block>
 <body>
@@ -9,20 +8,16 @@
     <h3 class="text-center">Créer un match</h3>
     <form method="post" th:action="@{/games/create}" class="m-2" th:object="${game}">
         <div class="form-group">
-            <label for="player1">Joueur 1</label>
-            <select name="player1" id="player1" class="form-control">
-                <option th:each="player : ${players}" th:value="${player.id}" th:text="${player.username}"></option>
-            </select>
+            <label for="whitePlayer">Joueur 1</label>
+            <select name="whitePlayer" id="whitePlayer" class="form-control">
+                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+                            </select>
         </div>
-    <div  class="form-group">
-        <label for="player2">Joueur 2</label>
-        <select name="player2"  id="player2"  class="form-control">
-            <option th:name="player2" th:each="player : ${players}" th:value="${player.id}" th:text="${player.username}"></option>
-        </select>
-    </div>
         <div class="form-group">
-            <label for="dateTime">Date et heure du match </label>
-            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" placeholder="Date et heure du match">
+            <label for="blackPlayer">Joueur 2</label>
+            <select name="blackPlayer" id="blackPlayer" class="form-control">
+                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+            </select>
         </div>
         <div class="form-group">
             <label for="tournament">Tournoi</label>
@@ -30,9 +25,16 @@
                 <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary m-2">Ajouter</button>
 
+        <div class="form-group">
+            <label for="dateTime">Date et heure du match </label>
+            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" placeholder="Date et heure du match">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Valider</button>
     </form>
+    <a th:href="@{/tournaments/admin}" class="btn btn-danger my-3">Retour</a>
 </div>
 </body>
 </html>

@@ -45,6 +45,40 @@ public class TournamentController {
         return "redirect:/tournaments/admin";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteTournament(@PathVariable("id") Long id){
+       Tournament t =  tournamentService.findById(id);
+        if( t != null && tournamentService.deleteById(id)){
+            log.info("Tournament deleted: " + t.getName());
+            return "redirect:/tournaments/admin";
+        }
+        return "Aucun tournoi avec cet id";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editTournament(@PathVariable("id") Long id, Model model){
+        Tournament t = tournamentService.findById(id);
+        if(t != null){
+            model.addAttribute("tournament", t);
+            return "addTournament";
+        }
+        return "Aucun tournoi avec cet id";
+    }
+
+    @PostMapping("/update/{id}")
+    public Tournament updateTournament(@PathVariable("id") Long id,
+                                      @ModelAttribute Tournament tournament){
+        Tournament t = tournamentService.findById(id);
+        if(t != null){
+            t.setName(tournament.getName());
+            t.setDate(tournament.getDate());
+            tournamentService.update(t);
+            return t;
+        }
+        return t;
+    }
+
+
 
 }
 

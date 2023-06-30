@@ -2,6 +2,9 @@ package com.example.ecf3.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -15,16 +18,23 @@ public class Game {
     private Long id;
 
     @ManyToOne
-    private User player1;
+    private User whitePlayer;
 
     @ManyToOne
-    private User player2;
+    private User blackPlayer;
+
+//    @Temporal(TemporalType.DATE)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @Column(name="date_time")
+//    private Date dateTime;
 
     private String dateTime;
+
 
     @OneToOne
     private Result result;
 
     @ManyToOne
     private Tournament tournament;
+
 }

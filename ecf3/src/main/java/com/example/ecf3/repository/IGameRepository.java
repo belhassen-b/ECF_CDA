@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IGameRepository extends JpaRepository<Game, Long> {
+
+    boolean existsByWhitePlayerIdAndBlackPlayerId(Long whitePlayerId, Long blackPlayerId);
+
+
 }

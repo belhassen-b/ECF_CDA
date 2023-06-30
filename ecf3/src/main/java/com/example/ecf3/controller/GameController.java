@@ -12,11 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
@@ -36,24 +32,27 @@ public class GameController {
     @GetMapping("/gameList")
     public String showGames(Model model) {
         model.addAttribute("games", gameRepository.findAll());
-        model.addAttribute("players", userService.findAll());
+        model.addAttribute("users", userService.findAll());
         model.addAttribute("tournaments", tournamentService.findAll());
         return "addGame";
     }
 
-
     @PostMapping("/create")
-    public String createGame(@RequestParam Long player1, @RequestParam Long player2, @RequestParam String dateTime, @RequestParam Long tournament) {
-        User player1User = userService.findById(player1);
-        User player2User = userService.findById(player2);
+    public String add( @RequestParam Long whitePlayer, @RequestParam Long blackPlayer,@RequestParam String dateTime, @RequestParam Long tournament) {
+        User whitePlayer1 = userService.findById(whitePlayer);
+        User blackPlayer1 = userService.findById(blackPlayer);
         Tournament tournament1 = tournamentService.findById(tournament);
         Game game = Game.builder()
-                .player1(player1User)
-                .player2(player2User)
+                .whitePlayer(whitePlayer1)
+                .blackPlayer(blackPlayer1)
                 .dateTime(dateTime)
                 .tournament(tournament1)
                 .build();
+
         gameService.save(game);
         return "redirect:/games/gameList";
     }
+
+
 }
+

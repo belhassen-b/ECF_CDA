@@ -47,5 +47,17 @@ public class TournamentServiceImpl implements ITournamentService {
         return tournamentRepository.findByName(tournament);
     }
 
+    @Override
+    public boolean deleteById(Long id) {
+        tournamentRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public boolean update(Tournament t) {
+        tournamentRepository.save(t);
+        return true;
+    }
+
 
 }

@@ -19,4 +19,14 @@ public class Result {
 
     @ManyToOne
     private User winner;
+
+    public void setResult(String result) {
+        if (result.equals("white")) {
+            this.winner = game.getWhitePlayer();
+        } else if (result.equals("black")) {
+            this.winner = game.getBlackPlayer();
+        } else {
+            this.winner = null;
+        }
+    }
 }

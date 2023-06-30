@@ -30,11 +30,11 @@ public class User {
     private boolean admin;
 
 
-    @OneToMany(mappedBy = "player1")
-    private List<Game> player1Games;
+    @OneToMany(mappedBy = "whitePlayer")
+    private List<Game> whitePlayer;
 
-    @OneToMany(mappedBy = "player2")
-    private List<Game> player2Games;
+    @OneToMany(mappedBy = "blackPlayer")
+    private List<Game> blackPlayer;
 
 
 }

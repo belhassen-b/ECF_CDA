@@ -22,15 +22,16 @@
         <td th:text="${tournament.name}"></td>
         <td th:text="${tournament.date}"></td>
         <td>
-            <a th:href="@{/games/gameList}" class="btn btn-primary">Ajouter une partie</a>
-            <a th:href="@{/tournament/{id}/edit(id=${tournament.id})}" class="btn btn-warning">Modifier</a>
-            <a th:href="@{/tournament/{id}/delete(id=${tournament.id})}" class="btn btn-danger">Supprimer</a>
+            <a th:href="@{/tournaments/edit/{id}(id=${tournament.id})}" class="btn btn-warning">Modifier</a>
+            <a th:href="@{/tournaments/delete/{id}(id=${tournament.id})}" class="btn btn-danger">Supprimer</a>
         </td>
 
         </tr>
         </tbody>
         </table>
     <a th:href="@{/tournaments/addTournament}"   class="btn btn-primary">Ajouter un tournoi</a>
+    <a th:href="@{/games/gameList}" class="btn btn-primary">Ajouter une partie</a>
+
 
 </div>
 
