@@ -17,6 +17,6 @@
 
 - Gestion de session : Mettez en place un système de gestion de session pour gérer l'authentification des utilisateurs. Les utilisateurs doivent pouvoir se connecter et se déconnecter, et leurs sessions doivent persister entre différentes visites sur le site.
 
-2. Partie 2 : Test Driven Development
+ Partie 2 : Test Driven Development
 
 - Mise en œuvre du TDD : Choisissez une fonctionnalité de l'application et développez-la en utilisant la méthodologie TDD. Documentez votre processus, y compris l'écriture de tests, le développement de fonctionnalités pour passer les tests, et le refactoring.

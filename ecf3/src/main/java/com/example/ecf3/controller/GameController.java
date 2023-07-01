@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -40,9 +41,9 @@ public class GameController {
 
     @GetMapping("/gameAdd")
     public String showGames(Model model) {
-        if(httpSession.getAttribute("user") == null) {
+        if (httpSession.getAttribute("user") == null) {
             return "redirect:/user/login";
-        }  else if (!((User) httpSession.getAttribute("user")).isAdmin()) {
+        } else if (!((User) httpSession.getAttribute("user")).isAdmin()) {
             return "redirect:/error";
         }
         model.addAttribute("game", new Game());
@@ -55,7 +56,7 @@ public class GameController {
     @GetMapping("/gameList")
     public String showGamesList(Model model) {
         List<Game> games = gameRepository.findAll();
-games.stream().map(Game::getResult).forEach(System.out::println);
+        games.stream().map(Game::getResult).forEach(System.out::println);
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("users", userService.findAll());
         model.addAttribute("tournaments", tournamentService.findAll());
@@ -63,73 +64,32 @@ games.stream().map(Game::getResult).forEach(System.out::println);
     }
 
     @PostMapping("/create")
-    public String add(@RequestParam Long whitePlayer, @RequestParam Long blackPlayer, @RequestParam String dateTime, @RequestParam Long tournament) {
+    public String add(@RequestParam Long whitePlayer, @RequestParam Long blackPlayer, @RequestParam String dateTime, @RequestParam Long tournament, RedirectAttributes redirAttrs) {
         User whitePlayer1 = userService.findById(whitePlayer);
         User blackPlayer1 = userService.findById(blackPlayer);
-        if (whitePlayer1 == null || blackPlayer1 == null) {
-            return "redirect:/error";
-        } else if (whitePlayer1.equals(blackPlayer1)) {
-            if (httpSession.getAttribute("user") == null && (!((User) httpSession.getAttribute("user")).isAdmin())) {
-                    return "redirect:/error";
-            }
+        if (whitePlayer1 == null || blackPlayer1 == null || dateTime == null || dateTime.isEmpty()
+                || whitePlayer1.equals(blackPlayer1)) {
+            redirAttrs.addFlashAttribute("error", "Erreur lors de la création ...");
         }
-        else if (!((User) httpSession.getAttribute("user")).isAdmin()) {
-            return "redirect:/error";
+        else {
+            Result result = new Result();
+            result.setWinner(whitePlayer1);
+            resultRepository.save(result);
+            Tournament tournament1 = tournamentService.findById(tournament);
+            Game game = Game.builder()
+                    .whitePlayer(whitePlayer1)
+                    .blackPlayer(blackPlayer1)
+                    .dateTime(dateTime)
+                    .result(result)
+                    .tournament(tournament1)
+                    .build();
+            gameService.save(game);
+            redirAttrs.addFlashAttribute("success", "Partie créée.");
+            return "redirect:/games/gameAdd";
         }
-        Result result = new Result();
-        result.setWinner(whitePlayer1);
-        resultRepository.save(result);
-        Tournament tournament1 = tournamentService.findById(tournament);
-        Game game = Game.builder()
-                .whitePlayer(whitePlayer1)
-                .blackPlayer(blackPlayer1)
-                .dateTime(dateTime)
-                .result(result)
-                .tournament(tournament1)
-                .build();
-        gameService.save(game);
         return "redirect:/games/gameAdd";
     }
 
-//    @GetMapping("/edit/{id}")
-//    public String editGame(@PathVariable("id") Long id, Model model) {
-//        Game g = gameService.findById(id);
-//        if (g == null || httpSession.getAttribute("user") == null || (!((User) httpSession.getAttribute("user")).isAdmin())) {
-//            return "redirect:/error";
-//        }
-//        model.addAttribute("game", g);
-//        model.addAttribute("users", userService.findAll());
-//        model.addAttribute("tournaments", tournamentService.findAll());
-//        return "updateGame";
-//    }
-//
-//    @PostMapping("/update/{id}")
-//    public String updateGame(@RequestParam Long id, @RequestParam Long whitePlayer, @RequestParam Long blackPlayer, @RequestParam String dateTime, @RequestParam Long tournament, @RequestParam Result result) {
-//        User whitePlayer1 = userService.findById(whitePlayer);
-//        User blackPlayer1 = userService.findById(blackPlayer);
-//        Tournament tournament1 = tournamentService.findById(tournament);
-//        if (whitePlayer1 == null || blackPlayer1 == null || tournament1 == null) {
-//            return "redirect:/error";
-//        } else if (whitePlayer1.equals(blackPlayer1)) {
-//            if (httpSession.getAttribute("user") == null && (!((User) httpSession.getAttribute("user")).isAdmin())) {
-//                return "redirect:/error";
-//            }
-//        }
-//        else if (!((User) httpSession.getAttribute("user")).isAdmin()) {
-//            return "redirect:/error";
-//        }
-//        Game game = Game.builder()
-//                .id(id)
-//                .whitePlayer(whitePlayer1)
-//                .blackPlayer(blackPlayer1)
-//                .dateTime(dateTime)
-//                .tournament(tournament1)
-//                .result(result)
-//                .build();
-//        gameService.save(game);
-//        return "redirect:/games/gameList";
-//    }
-//
     @GetMapping("/setWinner/{gameId}/{playerId}")
     public String setWinner(@PathVariable("gameId") Long id, @PathVariable("playerId") Long playerId) {
         System.out.println("gameId: " + id + " playerId: " + playerId);
@@ -137,6 +97,12 @@ games.stream().map(Game::getResult).forEach(System.out::println);
         User player = userService.findById(playerId);
     game.getResult().setWinner(player);
         gameService.save(game);
+        return "redirect:/games/gameList";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        gameService.deleteById(id);
         return "redirect:/games/gameList";
     }
 

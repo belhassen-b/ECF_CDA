@@ -23,28 +23,35 @@ public class TournamentController {
     private final ITournamentService tournamentService;
     private final HttpSession httpSession;
 
-    @GetMapping("/addTournament")
-    public String addTournament(Model model) {
+    @GetMapping("/admin")
+    public String showTournaments(Model model) {
         if (httpSession.getAttribute("user") == null) {
             return "redirect:/error";
         }
         if (!((User) httpSession.getAttribute("user")).isAdmin()) {
             return "redirect:/error";
         }
-        model.addAttribute("tournament", new Game());
-        return "addTournament";
-    }
-
-
-    @GetMapping("/admin")
-    public String showTournaments(Model model) {
+        httpSession.setAttribute("user", httpSession.getAttribute("user"));
         model.addAttribute("tournaments", tournamentService.findAll());
         return "adminTournament";
     }
 
+
+    @GetMapping("/addTournament")
+    public String addTournament(Model model) {
+        if (httpSession.getAttribute("user") == null || !((User) httpSession.getAttribute("user")).isAdmin()) {
+            return "redirect:/error";
+        }
+        model.addAttribute("tournament", new Game());
+        return "addTournament";
+    }
+
     @PostMapping("/create")
     public String creatTournament(@RequestParam("name") String name,
-                                  @RequestParam String dateTime) {
+                                  @RequestParam String dateTime ) {
+        if (name == null || name.isEmpty() || dateTime == null || dateTime.isEmpty()) {
+            return "redirect:/tournaments/addTournament";
+          }
           Tournament tournament = Tournament.builder()
                 .name(name)
                 .dateTime(String.valueOf(Utils.parseDateString(dateTime)))

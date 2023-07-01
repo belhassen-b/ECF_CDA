@@ -11,8 +11,5 @@ import java.util.List;
 @Repository
 public interface IGameRepository extends JpaRepository<Game, Long> {
 
-    boolean existsByWhitePlayerIdAndBlackPlayerId(Long whitePlayerId, Long blackPlayerId);
-
-
     List<Game> findAllByWhitePlayerOrBlackPlayer(User user, User user1);
 }

@@ -18,7 +18,8 @@
             <th scope="col">Joueur Blanc :</th>
             <th scope="col">Joueur Noir :</th>
             <th scope="col">Nom du gagnant :</th>
-            <th scope="col">Définir le gagant</th>
+            <th scope="col">Définir le gagnant</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@
                 <a th:href="@{'/games/setWinner/' + ${game.id} +'/' + ${game.blackPlayer.id}}"
                    class="btn btn-success m-2">Noir</a>
             </td>
+            <td>                 <a th:href="@{'/games/delete/' + ${game.id}}" class="btn btn-danger m-2">Supprimer</a>
+            </td>
+
         </tr>
         </tbody>
     </table>

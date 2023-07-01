@@ -3,14 +3,10 @@ package com.example.ecf3;
 import com.example.ecf3.entity.Game;
 import com.example.ecf3.entity.Tournament;
 import com.example.ecf3.entity.User;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.data.relational.core.sql.AnalyticFunction;
-
-import java.util.Arrays;
 
 @SpringBootTest
 class Ecf3ApplicationTests {

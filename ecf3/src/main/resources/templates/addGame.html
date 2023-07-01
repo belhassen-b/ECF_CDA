@@ -7,21 +7,29 @@
 <th:blockquote th:insert="fragments/header.html :: nav"></th:blockquote>
 
 <div class="container border border-dark rounded my-3">
+    <h1>Settings</h1>
+    <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
     <h3 class="text-center my-3 ">Créer un match</h3>
     <form method="post" th:action="@{/games/create}" class="m-2 p-2">
         <div class="form-group ">
             <label for="whitePlayer">Joueur 1</label>
             <select name="whitePlayer" id="whitePlayer" class="form-control ">
                 <option class="form-control" th:each="user : ${users}" th:value="${user.id}"
-                        th:text="${user.username}"></option>
+                        th:text="${user.username}"
+                ></option>
             </select>
         </div>
         <div class="form-group ">
             <label  for="blackPlayer">Joueur 2</label>
             <select name="blackPlayer" id="blackPlayer" class="form-control">
-                <option class="form-control" th:each="user : ${users}" th:value="${user.id}"
+                //set option display user excepted whitePlayer
+                <option class="form-control"
+                        th:each="user : ${users}"
+                         th:value="${user.id}"
                         th:text="${user.username}"></option>
             </select>
+
         </div>
         <div class="form-group">
             <label for="tournament">Tournoi</label>

@@ -1,6 +1,5 @@
 package com.example.ecf3.service.impl;
 
-import com.example.ecf3.entity.Game;
 import com.example.ecf3.entity.Tournament;
 import com.example.ecf3.entity.User;
 import com.example.ecf3.repository.ITournamentRepository;

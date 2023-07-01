@@ -16,4 +16,6 @@ public interface IGameService {
     List<Game> findAllByWhitePlayerOrBlackPlayer(User user, User user1);
 
     Set<Game> AllGame(User user);
+
+    boolean deleteById(Long id);
 }

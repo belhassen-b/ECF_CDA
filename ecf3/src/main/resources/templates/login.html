@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <th:block th:insert="fragments/base.html :: head"></th:block>
 </head>
-<body>
-<h2>Login</h2>
-<section class="vh-100 gradient-custom">
+<body id="login">
+<section class="vh-100 gradient-custom ">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center ">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -18,14 +17,13 @@
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
                                 <div class="form-outline form-white mb-4">
-                                    <input type="username" id="username" class="form-control form-control-lg" name="username"/>
+                                    <input type="text" id="username" class="form-control form-control-lg" name="username"/>
                                     <label class="form-label" for="username">Username</label>
                                 </div>
                                 <div class="form-outline form-white mb-4">
                                     <input type="password" id="password" class="form-control form-control-lg" name="password"/>
                                     <label class="form-label" for="password">Password</label>
                                 </div>
-                                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
                                 <button class="btn btn-outline-light btn-lg px-5"  type="submit">Login</button>
                             </div>
                         </form>
@@ -40,20 +38,5 @@
         </div>
     </div>
 </section>
-</div>
-
-<!--<form class="" th:action="@{/login}" method="post">-->
-<!--    <div>-->
-<!--        <label for="username">Username:</label>-->
-<!--        <input type="text" id="username" name="username" required>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <label for="password">Password:</label>-->
-<!--        <input type="password" id="password" name="password" required>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <button type="submit">Login</button>-->
-<!--    </div>-->
-<!--</form>-->
-</body>
+    </body>
 </html>
