@@ -55,4 +55,11 @@ public class UtilisateurController {
             throw new RuntimeException();
         }
     }
+
+    @GetMapping("/user")
+    public ResponseEntity<Utilisateur> getUserInfo(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Utilisateur user = (Utilisateur) authentication.getPrincipal();
+        return ResponseEntity.ok(user);
+    }
 }

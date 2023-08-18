@@ -17,7 +17,11 @@ public class CelestObjectController {
     }
 
     @PostMapping("")
-    public ResponseEntity<CelestObject> post(@RequestParam String name, @RequestParam String type, @RequestParam String description, @RequestParam String image) {
+    public ResponseEntity<CelestObject> post(
+            @RequestParam String name,
+            @RequestParam String type,
+            @RequestParam String description,
+            @RequestParam String image) {
         CelestObject celestObject = celestObjectService.createCelestObject(name, type, description, image);
         return ResponseEntity.ok(celestObject);
     }
@@ -28,6 +32,5 @@ public class CelestObjectController {
         return ResponseEntity.ok(celestObject);
     }
 
-// getMapping userID
 
 }

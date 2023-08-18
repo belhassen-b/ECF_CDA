@@ -1,6 +1,7 @@
 package com.example.celestobservation.dto;
 
 
+import com.example.authentication.entity.Utilisateur;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

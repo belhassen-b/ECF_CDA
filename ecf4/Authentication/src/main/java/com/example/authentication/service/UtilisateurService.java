@@ -32,4 +32,8 @@ public class UtilisateurService  {
     public Optional<Utilisateur> trouverParId(Long id) {
         return userRepository.findById(id);
     }
+
+    public boolean existById(Long id) {
+        return userRepository.existsById(id);
+    }
 }

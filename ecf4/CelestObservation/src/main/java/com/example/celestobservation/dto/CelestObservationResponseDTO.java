@@ -1,6 +1,5 @@
 package com.example.celestobservation.dto;
 
-
 import com.example.celestobservation.entity.CelestObservation;
 import lombok.Builder;
 import lombok.Data;
