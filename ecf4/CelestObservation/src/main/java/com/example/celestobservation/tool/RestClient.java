@@ -12,7 +12,7 @@ public class RestClient<T,V> {
     private HttpHeaders httpHeaders;
     private HttpStatus httpStatus;
 
-    public RestClient(String url) {
+    public RestClient() {
         template = new RestTemplate();
         httpHeaders = new HttpHeaders();
         httpHeaders.add("Accept", "*/*");

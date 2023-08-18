@@ -1,7 +1,6 @@
 package com.example.celestobservation.entity;
 
 
-import com.example.authentication.entity.Utilisateur;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,4 +33,7 @@ public class CelestObservation {
 
     @Column(name = "user_id")
     private Long userId;
+
+    public CelestObservation(String observation, String date, String description, String image, long l, long l1) {
+    }
 }

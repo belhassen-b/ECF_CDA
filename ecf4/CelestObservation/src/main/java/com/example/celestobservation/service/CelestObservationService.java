@@ -17,6 +17,7 @@ public class CelestObservationService {
 
 
     public CelestObservation createCelestObservation(String name, String date, String description, String image, Long celestObjectId, Long userId) {
+
         CelestObservation celestObservation = CelestObservation.builder()
                 .name(name)
                 .date(date)
@@ -27,6 +28,10 @@ public class CelestObservationService {
                 .build();
         return celestObservationRepository.save(celestObservation);
     }
+
+
+
+
 
 
     public CelestObservation getCelestObservationById (Long id){

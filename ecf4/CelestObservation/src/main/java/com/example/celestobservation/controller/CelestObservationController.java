@@ -1,11 +1,11 @@
 package com.example.celestobservation.controller;
 
-
-import com.example.celestobservation.service.CelestObservationService;
 import com.example.celestobservation.dto.CelestObservationRequestDTO;
+import com.example.celestobservation.service.CelestObservationService;
 import com.example.celestobservation.entity.CelestObservation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("api/celestobservation")
@@ -29,6 +29,7 @@ public class CelestObservationController {
         );
         return ResponseEntity.ok(celestObservation);
     }
+
 
 
     @GetMapping("{id}")

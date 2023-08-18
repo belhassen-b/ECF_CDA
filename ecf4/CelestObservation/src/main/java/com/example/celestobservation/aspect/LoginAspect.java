@@ -13,7 +13,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class LoginAspect {
     @Before("execution(* com.example.celestobservation.controller.*.*(..))")
     public void testToken() {
-        RestClient<String, String> restClient = new RestClient<>("http://localhost:8080/api/auth");
+        RestClient<String, String> restClient = new RestClient<>();
         HttpServletRequest servletRequest = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
         String token = servletRequest.getHeader("Authorization");
         if(!restClient.testToken(token, String.class)) {
